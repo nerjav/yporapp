@@ -1,0 +1,14 @@
+import './admin-user';
+import './profile-edit-profile';
+import './profile-edit-password';
+import './cliente';
+import './inventario';
+import './producto';
+import './productos-force';
+import './estados-pedido';
+import './tipo-de-cliente';
+import './pedido';
+import './venta';
+import './detalle-pedido';
+import './metodos-de-pago';
+import './estado-producto';
