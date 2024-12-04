@@ -3,11 +3,14 @@
 @section('title', trans('admin.detalle-pedido.actions.index'))
 
 @section('body')
+    @include('admin.pedido.cabecera')
 
-    <detalle-pedido-listing
-        :data="{{ $data->toJson() }}"
-        :url="'{{ url('admin/detalle-pedidos') }}'"
-        inline-template>
+ <detalle-pedido-listing
+    :data="{{ $data->toJson() }}"
+    :url="'{{ url('admin/detalle-pedidos') }}'"
+    inline-template>
+</detalle-pedido-listing>
+
 
         <div class="row">
             <div class="col">
@@ -30,7 +33,7 @@
                                     </div>
                                     <div class="col-sm-auto form-group ">
                                         <select class="form-control" v-model="pagination.state.per_page">
-                                            
+
                                             <option value="10">10</option>
                                             <option value="25">25</option>
                                             <option value="100">100</option>
@@ -82,7 +85,7 @@
                                         <td>@{{ item.producto_id }}</td>
                                         <td>@{{ item.cantidad }}</td>
                                         <td>@{{ item.precio_gral }}</td>
-                                        
+
                                         <td>
                                             <div class="row no-gutters">
                                                 <div class="col-auto">

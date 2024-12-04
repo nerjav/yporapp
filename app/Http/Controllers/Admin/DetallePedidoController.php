@@ -30,7 +30,9 @@ class DetallePedidoController extends Controller
      * @return array|Factory|View
      */
     public function index(IndexDetallePedido $request)
-    {
+    {$pedido = Pedido::find($pedidoid);
+
+
         // create and AdminListing instance for a specific model and
         $data = AdminListing::create(DetallePedido::class)->processRequestAndGet(
             // pass the request with params
@@ -52,7 +54,7 @@ class DetallePedidoController extends Controller
             return ['data' => $data];
         }
 
-        return view('admin.detalle-pedido.index', ['data' => $data]);
+        return view('admin.detalle-pedido.index', ['data' => $data,'pedido'=>$pedido]);
     }
 
     /**
@@ -61,12 +63,15 @@ class DetallePedidoController extends Controller
      * @throws AuthorizationException
      * @return Factory|View
      */
-    public function create()
-    {
-        $this->authorize('admin.detalle-pedido.create');
 
-        return view('admin.detalle-pedido.create');
-    }
+        public function create($pedidoId)
+        {
+            dd($pedidoId); // Esto debería mostrar el pedidoId recibido
+
+            // Aquí puedes agregar la lógica para crear un detalle de pedido
+            return view('admin.detalle-pedidos.create', compact('pedidoId'));
+        }
+
 
     /**
      * Store a newly created resource in storage.

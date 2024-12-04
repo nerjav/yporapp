@@ -7,7 +7,7 @@
 
 
     @include('admin.pedido.cabecera')
-
+    @include('admin.detalle-pedido.index')
 
 
 @endsection

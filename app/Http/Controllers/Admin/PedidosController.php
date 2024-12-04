@@ -11,6 +11,11 @@ use App\Http\Requests\Admin\Pedido\UpdatePedido;
 use App\Models\Pedido;
 use App\Models\DetallePedido;
 use App\Models\Producto;
+use App\Http\Requests\Admin\DetallePedido\BulkDestroyDetallePedido;
+use App\Http\Requests\Admin\DetallePedido\DestroyDetallePedido;
+use App\Http\Requests\Admin\DetallePedido\IndexDetallePedido;
+use App\Http\Requests\Admin\DetallePedido\StoreDetallePedido;
+use App\Http\Requests\Admin\DetallePedido\UpdateDetallePedido;
 
 use App\Models\MetodosDePago;
 use App\Models\EstadosPedido;
@@ -151,14 +156,22 @@ class PedidosController extends Controller
     }
 }
 
-public function cabecera(IndexPedido $request)
+public function cabecera($pedidoid, IndexDetallePedido $request)
 {
-     $pedido = Pedido::all(); // Obtiene todos los pedidos
+    $pedido = Pedido::find($pedidoid);
 
-    return view('admin.pedido.pedido', compact('pedido'));
+    $data = AdminListing::create(DetallePedido::class)->processRequestAndGet(
+        $request,
+        ['id', 'pedido_id', 'producto_id', 'cantidad', 'precio_gral'],
+        ['id'],
+        function ($query) use ($pedidoid) {
+            $query->where('detalle_pedido.pedido_id', $pedidoid);
+        }
+    );
+
+    // Renderiza la vista con la cabecera y los detalles
+    return view('admin.pedido.pedido', compact('pedido', 'data'));
 }
-
-
 
 
 

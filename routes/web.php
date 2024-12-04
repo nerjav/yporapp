@@ -151,8 +151,7 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->gro
             Route::post('/bulk-destroy',                                'PedidosController@bulkDestroy')->name('bulk-destroy');
             Route::post('/{pedido}',                                    'PedidosController@update')->name('update');
             Route::delete('/{pedido}',                                  'PedidosController@destroy')->name('destroy');
-            Route::get('/pedido', 'PedidosController@cabecera')->name('pedido');
-            Route::get('/test', 'PedidosController@test')->name('test');
+            Route::get('/{pedido}/pedido', 'PedidosController@cabecera')->name('pedido');
 
 
         });
@@ -185,7 +184,7 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->gro
             Route::post('/bulk-destroy',                                'DetallePedidoController@bulkDestroy')->name('bulk-destroy');
             Route::post('/{detallePedido}',                             'DetallePedidoController@update')->name('update');
             Route::delete('/{detallePedido}',                           'DetallePedidoController@destroy')->name('destroy');
-        });
+            Route::get('/admin/detalle-pedidos/create/{pedidoId}', 'DetallePedidoController@create')->name('admin.detalle-pedidos.create');        });
     });
 });
 
