@@ -30,7 +30,6 @@ class StorePedido extends FormRequest
             'estado' => ['required'],
             'tipo_cliente' => ['required'],
             'metodo_pago' => ['required'],
-            'total' => ['nullable'],
             'observacion' => ['nullable', 'string'],
             'cliente_id' => [''],
 

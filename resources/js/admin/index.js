@@ -12,3 +12,4 @@ import './venta';
 import './detalle-pedido';
 import './metodos-de-pago';
 import './estado-producto';
+import './detalle-pedido';

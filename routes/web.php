@@ -184,7 +184,7 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->gro
             Route::post('/bulk-destroy',                                'DetallePedidoController@bulkDestroy')->name('bulk-destroy');
             Route::post('/{detallePedido}',                             'DetallePedidoController@update')->name('update');
             Route::delete('/{detallePedido}',                           'DetallePedidoController@destroy')->name('destroy');
-            Route::get('/admin/detalle-pedidos/create/{pedidoId}', 'DetallePedidoController@create')->name('admin.detalle-pedidos.create');        });
+                  });
     });
 });
 
@@ -214,6 +214,22 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->gro
             Route::post('/bulk-destroy',                                'EstadoProductoController@bulkDestroy')->name('bulk-destroy');
             Route::post('/{estadoProducto}',                            'EstadoProductoController@update')->name('update');
             Route::delete('/{estadoProducto}',                          'EstadoProductoController@destroy')->name('destroy');
+        });
+    });
+});
+
+
+/* Auto-generated admin routes */
+Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
+    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
+        Route::prefix('detalle-pedidos')->name('detalle-pedidos/')->group(static function() {
+            Route::get('/',                                             'DetallePedidoController@index')->name('index');
+            Route::get('/create',                                       'DetallePedidoController@create')->name('create');
+            Route::post('/',                                            'DetallePedidoController@store')->name('store');
+            Route::get('/{detallePedido}/edit',                         'DetallePedidoController@edit')->name('edit');
+            Route::post('/bulk-destroy',                                'DetallePedidoController@bulkDestroy')->name('bulk-destroy');
+            Route::post('/{detallePedido}',                             'DetallePedidoController@update')->name('update');
+            Route::delete('/{detallePedido}',                           'DetallePedidoController@destroy')->name('destroy');
         });
     });
 });

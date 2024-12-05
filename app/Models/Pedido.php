@@ -11,7 +11,7 @@ class Pedido extends Model
         'estado_id',
         'tipo_cliente_id',
         'metodo_pago_id',
-        'total',
+
         'observacion',
         'cliente_id',
 

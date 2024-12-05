@@ -11,7 +11,6 @@ Vue.component('pedido-form', {
                 estado:  '' ,
                 tipo_cliente:  '' ,
                 metodo_pago:  '' ,
-                total:  '' ,
                 observacion:  '' ,
                 cliente_id:  '' ,
                 ruc:'',

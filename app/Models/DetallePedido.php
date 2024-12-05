@@ -13,28 +13,17 @@ class DetallePedido extends Model
         'producto_id',
         'cantidad',
         'precio_gral',
-
+    
     ];
-
-
+    
+    
     protected $dates = [
         'created_at',
         'updated_at',
-
+    
     ];
-
+    
     protected $appends = ['resource_url'];
-    protected  $with = ['producto'];
-
-    public function pedido()
-    {
-        return $this->belongsTo(Pedido::class);
-    }
-
-    public function producto()
-    {
-        return $this->hasOne( 'App\Models\Producto','id','producto_id');
-    }
 
     /* ************************ ACCESSOR ************************* */
 

@@ -1,10 +1,10 @@
-<div class="form-group row align-items-center" :class="{'has-danger': errors.has('pedido_id'), 'has-success': fields.pedido_id && fields.pedido_id.valid }">
+<!-- <div class="form-group row align-items-center" :class="{'has-danger': errors.has('pedido_id'), 'has-success': fields.pedido_id && fields.pedido_id.valid }">
     <label for="pedido_id" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">{{ trans('admin.detalle-pedido.columns.pedido_id') }}</label>
         <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-8'">
         <input type="text" v-model="form.pedido_id" v-validate="'required'" @input="validate($event)" class="form-control" :class="{'form-control-danger': errors.has('pedido_id'), 'form-control-success': fields.pedido_id && fields.pedido_id.valid}" id="pedido_id" name="pedido_id" placeholder="{{ trans('admin.detalle-pedido.columns.pedido_id') }}">
         <div v-if="errors.has('pedido_id')" class="form-control-feedback form-text" v-cloak>@{{ errors.first('pedido_id') }}</div>
     </div>
-</div>
+</div> -->
 
 <div class="form-group row align-items-center" :class="{'has-danger': errors.has('producto_id'), 'has-success': fields.producto_id && fields.producto_id.valid }">
     <label for="producto_id" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">{{ trans('admin.detalle-pedido.columns.producto_id') }}</label>

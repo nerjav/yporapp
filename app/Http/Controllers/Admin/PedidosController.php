@@ -39,7 +39,7 @@ class PedidosController extends Controller
     {
         $data = AdminListing::create(Pedido::class)->processRequestAndGet(
             $request,
-            ['id', 'fecha_pedido', 'estado_id', 'tipo_cliente_id', 'metodo_pago_id', 'total', 'cliente_id'],
+            ['id', 'fecha_pedido', 'estado_id', 'tipo_cliente_id', 'metodo_pago_id', 'cliente_id'],
             ['id', 'observacion']
         );
 
@@ -156,9 +156,11 @@ class PedidosController extends Controller
     }
 }
 
-public function cabecera($pedidoid, IndexDetallePedido $request)
+public function cabecera(Pedido $pedido, IndexDetallePedido $request)
 {
-    $pedido = Pedido::find($pedidoid);
+    // $pedido = Pedido::find($pedidoid);
+    $pedidoid=$pedido->id;
+
 
     $data = AdminListing::create(DetallePedido::class)->processRequestAndGet(
         $request,
