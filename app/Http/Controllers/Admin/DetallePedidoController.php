@@ -83,10 +83,10 @@ class DetallePedidoController extends Controller
         $detallePedido = DetallePedido::create($sanitized);
 
         if ($request->ajax()) {
-            return ['redirect' => url('admin/detalle-pedidos'), 'message' => trans('brackets/admin-ui::admin.operation.succeeded')];
+            return ['redirect' => url('admin/pedidos/'.$request->pedido_id.'/pedido'), 'message' => trans('brackets/admin-ui::admin.operation.succeeded')];
         }
 
-        return redirect('admin/detalle-pedidos');
+        return redirect('admin/pedidos/'.$request->pedido_id.'/pedido');
     }
 
     /**

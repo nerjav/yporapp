@@ -152,6 +152,7 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->gro
             Route::post('/{pedido}',                                    'PedidosController@update')->name('update');
             Route::delete('/{pedido}',                                  'PedidosController@destroy')->name('destroy');
             Route::get('/{pedido}/pedido', 'PedidosController@cabecera')->name('pedido');
+            Route::get('{pedido}/createdetail',                         'PedidosController@createdetail')->name('createdetail');
 
 
         });

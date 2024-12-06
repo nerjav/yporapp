@@ -159,21 +159,28 @@ class PedidosController extends Controller
 public function cabecera(Pedido $pedido, IndexDetallePedido $request)
 {
     // $pedido = Pedido::find($pedidoid);
-    $pedidoid=$pedido->id;
+    $id=$pedido->id;
 
 
     $data = AdminListing::create(DetallePedido::class)->processRequestAndGet(
         $request,
         ['id', 'pedido_id', 'producto_id', 'cantidad', 'precio_gral'],
         ['id'],
-        function ($query) use ($pedidoid) {
-            $query->where('detalle_pedido.pedido_id', $pedidoid);
+        function ($query) use ($id) {
+            $query->where('detalle_pedido.pedido_id', $id);
         }
     );
 
     // Renderiza la vista con la cabecera y los detalles
     return view('admin.pedido.pedido', compact('pedido', 'data'));
 }
+
+    public function createdetail($id)
+        {
+            $this->authorize('admin.detalle-pedido.create');
+
+            return view('admin.detalle-pedido.create', compact('id'));
+        }
 
 
 

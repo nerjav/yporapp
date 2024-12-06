@@ -10,7 +10,7 @@
         
         <detalle-pedido-form
             :action="'{{ url('admin/detalle-pedidos') }}'"
-            :pedido={{$pedidoid}}
+            :pedido={{$id}}
             v-cloak
             inline-template>
 

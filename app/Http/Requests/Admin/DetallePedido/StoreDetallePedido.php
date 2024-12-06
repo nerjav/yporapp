@@ -26,7 +26,7 @@ class StoreDetallePedido extends FormRequest
     public function rules(): array
     {
         return [
-            'pedido_id' => ['required', 'string'],
+            'pedido_id' => ['required', ''],
             'producto_id' => ['required', 'string'],
             'cantidad' => ['required', 'integer'],
             'precio_gral' => ['required', 'numeric'],

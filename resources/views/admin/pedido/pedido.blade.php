@@ -45,6 +45,7 @@
         :data="{{ $data->toJson() }}"
         :url="'{{ url('admin/detalle-pedidos') }}'"
         
+        
 
         inline-template>
 
@@ -53,9 +54,11 @@
                 <div class="card">
                     <div class="card-header">
                         <i class="fa fa-align-justify"></i> {{ trans('admin.detalle-pedido.actions.index') }}
-                        <a class="btn btn-primary btn-spinner btn-sm pull-right m-b-0" href="{{ url('admin/detalle-pedidos/create') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ trans('admin.detalle-pedido.actions.create') }}</a>
+                        <!-- <a class="btn btn-primary btn-spinner btn-sm pull-right m-b-0" href="{{ url('admin/detalle-pedidos/create') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ trans('admin.detalle-pedido.actions.create') }}</a> -->
+                        <a class="btn btn-primary btn-spinner btn-sm pull-right m-b-0" href="{{ url('admin/pedidos/'.$pedido->id.'/createdetail') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ trans('admin.pedido.actions.create') }}</a>
+                        
                     </div>
-                    <div class="card-body" v-cloak>
+                    <!-- <div class="card-body" v-cloak>
                         <div class="card-block">
                             <form @submit.prevent="">
                                 <div class="row justify-content-md-between">
@@ -76,7 +79,7 @@
                                         </select>
                                     </div>
                                 </div>
-                            </form>
+                            </form> -->
 
                             <table class="table table-hover table-listing">
                                 <thead>

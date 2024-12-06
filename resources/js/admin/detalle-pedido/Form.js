@@ -6,7 +6,7 @@ Vue.component('detalle-pedido-form', {
     data: function() {
         return {
             form: {
-                pedido_id:  this.pedido ,
+                pedido_id: this.pedido ,
                 producto_id:  '' ,
                 cantidad:  '' ,
                 precio_gral:  '' ,
