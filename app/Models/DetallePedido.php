@@ -24,6 +24,12 @@ class DetallePedido extends Model
     ];
     
     protected $appends = ['resource_url'];
+    protected $with = ['producto'];
+
+    public function producto()
+    {
+        return $this->hasOne( 'App\Models\Producto','id','producto_id');
+    }
 
     /* ************************ ACCESSOR ************************* */
 

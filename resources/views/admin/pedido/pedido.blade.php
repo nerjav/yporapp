@@ -6,36 +6,72 @@
 @section('body')
 
 
-<div class="card">
-    <div class="card-header text-center">
+<div class="card shadow">
+    <div class="card-header text-center bg-primary text-white">
         <h5>Pedido</h5>
     </div>
     
     <div class="card-body">
-        <div class="row">
+        <div class="row mb-3">
             <div class="form-group col-sm-4">
-                <p class="card-text">Cliente: {{$pedido->cliente->nombre}}</p>
+                <p class="card-text">
+                    <strong>Cliente:</strong>
+                    <span class="badge text-white" 
+                          style="background-color: #6c757d;">
+                        {{$pedido->cliente->nombre}}
+                    </span>
+                </p>
             </div>
             <div class="form-group col-sm-4">
-                <p class="card-text">RUC:{{$pedido->cliente->ruc}} </p>
+                <p class="card-text">
+                    <strong>RUC:</strong> 
+                    {{$pedido->cliente->ruc}}
+                </p>
+            </div>
+            <div class="form-group col-sm-4">
+                <p class="card-text">
+                    <strong>Dirección:</strong> 
+                    {{$pedido->cliente->direccion}}
+                </p>
             </div>
         </div>
-        <div class="row">
-            <div class="form-group col-sm-4">
-                <p class="card-text">Método de Pago:{{$pedido->metododepago->nombre}}</p>
-            </div>
-            <div class="form-group col-sm-4">
-                <p class="card-text">Tipo de Cliente:{{$pedido->tipodecliente->nombre}} </p>
-            </div>
-            <div class="form-group col-sm-4">
-                <p class="card-text">Estados Pedido:{{$pedido->estadospedido->nombre}} </p>
-            </div>
-            <div class="form-group col-sm-4">
-                <p class="card-text">Estado del Pedido:{{$pedido->estadospedido->nombre}} </p>
-            </div>
 
-              <div class="form-group col-sm-4">
-                <p class="card-text">Observacion{{$pedido->metododepago->descripcion}} </p>
+        <div class="row mb-3">
+            <div class="form-group col-sm-4">
+                <p class="card-text">
+                    <strong>Método de Pago:</strong>
+                    <span class="badge text-white" 
+                          style="background-color: {{$pedido->metododepago->id == 1 ? 'green' : ($pedido->metododepago->id == 2 ? 'red' : 'blue')}}">
+                        {{$pedido->metododepago->nombre}}
+                    </span>
+                </p>
+            </div>
+            <div class="form-group col-sm-4">
+                <p class="card-text">
+                    <strong>Tipo de Cliente:</strong>
+                    <span class="badge text-white" 
+                          style="background-color: {{$pedido->tipodecliente->id == 1 ? 'green' : ($pedido->tipodecliente->id == 2 ? 'red' : 'blue')}}">
+                        {{$pedido->tipodecliente->nombre}}
+                    </span>
+                </p>
+            </div>
+            <div class="form-group col-sm-4">
+                <p class="card-text">
+                    <strong>Estado del Pedido:</strong>
+                    <span class="badge text-white" 
+                          style="background-color: {{$pedido->estadospedido->id == 1 ? 'green' : ($pedido->estadospedido->id == 2 ? 'red' : 'blue')}}">
+                        {{$pedido->estadospedido->nombre}}
+                    </span>
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-sm-12">
+                <p class="card-text">
+                    <strong>Observación:</strong> 
+                    {{$pedido->metododepago->descripcion}}
+                </p>
             </div>
         </div>
     </div>
@@ -84,22 +120,25 @@
                             <table class="table table-hover table-listing">
                                 <thead>
                                     <tr>
-                                        <th class="bulk-checkbox">
+                                        <!-- <th class="bulk-checkbox">
                                             <input class="form-check-input" id="enabled" type="checkbox" v-model="isClickedAll" v-validate="''" data-vv-name="enabled"  name="enabled_fake_element" @click="onBulkItemsClickedAllWithPagination()">
                                             <label class="form-check-label" for="enabled">
                                                 #
                                             </label>
-                                        </th>
+                                        </th> -->
 
-                                        <th is='sortable' :column="'id'">{{ trans('admin.detalle-pedido.columns.id') }}</th>
-                                        <th is='sortable' :column="'pedido_id'">{{ trans('admin.detalle-pedido.columns.pedido_id') }}</th>
+                                        <!-- <th is='sortable' :column="'id'">{{ trans('admin.detalle-pedido.columns.id') }}</th>
+                                        <th is='sortable' :column="'pedido_id'">{{ trans('admin.detalle-pedido.columns.pedido_id') }}</th> -->
                                         <th is='sortable' :column="'producto_id'">{{ trans('admin.detalle-pedido.columns.producto_id') }}</th>
                                         <th is='sortable' :column="'cantidad'">{{ trans('admin.detalle-pedido.columns.cantidad') }}</th>
                                         <th is='sortable' :column="'precio_gral'">{{ trans('admin.detalle-pedido.columns.precio_gral') }}</th>
+                                        <th is='sortable' :column="'total'">{{ trans('admin.detalle-pedido.columns.total') }}</th>
+                                        <th is='sortable' :column="'stock'">{{ trans('admin.detalle-pedido.columns.stock') }}</th>
+
 
                                         <th></th>
                                     </tr>
-                                    <tr v-show="(clickedBulkItemsCount > 0) || isClickedAll">
+                                    <!-- <tr v-show="(clickedBulkItemsCount > 0) || isClickedAll">
                                         <td class="bg-bulk-info d-table-cell text-center" colspan="7">
                                             <span class="align-middle font-weight-light text-dark">{{ trans('brackets/admin-ui::admin.listing.selected_items') }} @{{ clickedBulkItemsCount }}.  <a href="#" class="text-primary" @click="onBulkItemsClickedAll('/admin/detalle-pedidos')" v-if="(clickedBulkItemsCount < pagination.state.total)"> <i class="fa" :class="bulkCheckingAllLoader ? 'fa-spinner' : ''"></i> {{ trans('brackets/admin-ui::admin.listing.check_all_items') }} @{{ pagination.state.total }}</a> <span class="text-primary">|</span> <a
                                                         href="#" class="text-primary" @click="onBulkItemsClickedAllUncheck()">{{ trans('brackets/admin-ui::admin.listing.uncheck_all_items') }}</a>  </span>
@@ -109,21 +148,24 @@
                                             </span>
 
                                         </td>
-                                    </tr>
+                                    </tr> -->
                                 </thead>
                                 <tbody>
                                     <tr v-for="(item, index) in collection" :key="item.id" :class="bulkItems[item.id] ? 'bg-bulk' : ''">
-                                        <td class="bulk-checkbox">
+                                        <!-- <td class="bulk-checkbox">
                                             <input class="form-check-input" :id="'enabled' + item.id" type="checkbox" v-model="bulkItems[item.id]" v-validate="''" :data-vv-name="'enabled' + item.id"  :name="'enabled' + item.id + '_fake_element'" @click="onBulkItemClicked(item.id)" :disabled="bulkCheckingAllLoader">
                                             <label class="form-check-label" :for="'enabled' + item.id">
                                             </label>
-                                        </td>
+                                        </td> -->
 
-                                    <td>@{{ item.id }}</td>
-                                        <td>@{{ item.pedido_id }}</td>
-                                        <td>@{{ item.producto_id }}</td>
+                                    <!-- <td>@{{ item.id }}</td>
+                                        <td>@{{ item.pedido_id }}</td> -->
+                                        <td>@{{ item.producto.nombre }}</td>
                                         <td>@{{ item.cantidad }}</td>
                                         <td>@{{ item.precio_gral }}</td>
+                                        <td>calculo cantidad x precio unitario</td>
+                                        <td>@{{ item.producto.stock_actual }}</td>
+
 
                                         <td>
                                             <div class="row no-gutters">
